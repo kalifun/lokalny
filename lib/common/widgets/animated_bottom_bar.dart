@@ -1,95 +1,79 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lokalny/common/screen/screen.dart';
+import 'package:lokalny/common/values/navigation_items.dart';
 
-class MainProgramNavigationBar extends StatefulWidget {
-  final List<MainItem> mainItems;
-  final Duration animationDuration;
-  final Function onBarTap;
-  MainProgramNavigationBar(
-      {Key? key,
-      required this.mainItems,
-      this.animationDuration = const Duration(milliseconds: 500),
-      required this.onBarTap})
-      : super(key: key);
+// hover bottom bar
+class HoverBottomBar extends StatefulWidget {
+  HoverBottomBar({Key? key}) : super(key: key);
 
   @override
-  _MainProgramNavigationBarState createState() =>
-      _MainProgramNavigationBarState();
+  _HoverBottomBarState createState() => _HoverBottomBarState();
 }
 
-class _MainProgramNavigationBarState extends State<MainProgramNavigationBar> {
-  int selectedBarIndex = 0;
+class _HoverBottomBarState extends State<HoverBottomBar> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 10.0,
-      child: Padding(
-        padding: const EdgeInsets.only(
-            bottom: 12.0, top: 12.0, left: 16.0, right: 16.0),
+    return Positioned(
+      height: doSetHeight(56),
+      bottom: doSetHeight(32),
+      left: doSetWidth(32),
+      right: doSetWidth(32),
+      child: Material(
+        color: Colors.white,
+        elevation: 10.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
         child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: _buildMainItems(),
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: _barItems(),
         ),
       ),
     );
   }
 
-  List<Widget> _buildMainItems() {
-    List<Widget> _mainItems = [];
-    for (int i = 0; i < widget.mainItems.length; i++) {
-      MainItem item = widget.mainItems[i];
-      bool isSelected = selectedBarIndex == i;
-      _mainItems.add(InkWell(
-        splashColor: Colors.transparent,
-        onTap: () {
-          setState(() {
-            selectedBarIndex = i;
-            widget.onBarTap(selectedBarIndex);
-          });
-        },
-        child: AnimatedContainer(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          duration: widget.animationDuration,
-          decoration: BoxDecoration(
-            color:
-                isSelected ? item.color.withOpacity(0.15) : Colors.transparent,
-            borderRadius: const BorderRadius.all(Radius.circular(30)),
-          ),
-          child: Row(
-            children: <Widget>[
-              Icon(
-                item.iconData,
-                color: isSelected ? item.color : Colors.black,
-                size: 32,
-              ),
-              const SizedBox(
-                width: 10.0,
-              ),
-              AnimatedSize(
-                duration: widget.animationDuration,
-                curve: Curves.easeInOut,
-                child: Text(
-                  isSelected ? item.title : "",
-                  style: TextStyle(
-                      color: item.color,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18.0),
+  List<Widget> _barItems() {
+    List<Widget> _items = [];
+    for (int i = 0; i < navigationItems.length; i++) {
+      bool isSelected = _currentIndex == i;
+      _items.add(
+        InkWell(
+          splashColor: Colors.transparent,
+          onTap: () {
+            setState(() {
+              _currentIndex = i;
+            });
+          },
+          child: AnimatedContainer(
+            // width: doSetWidth(36),
+            // height: doSetHeight(36),
+            duration: const Duration(
+              milliseconds: 300,
+            ),
+            decoration: BoxDecoration(
+                color: isSelected ? Colors.teal : Colors.transparent,
+                borderRadius: BorderRadius.circular(18)),
+            // child: SvgPicture.asset(
+            //   navigationItems[i].iconData,
+            //   color: isSelected ? Colors.black : Colors.grey,
+            // ),
+            child: Row(
+              children: <Widget>[
+                AnimatedSize(
+                  duration: const Duration(milliseconds: 150),
+                  curve: Curves.easeInOut,
+                  child: SvgPicture.asset(
+                    navigationItems[i].iconData,
+                    color: isSelected ? Colors.black : Colors.grey,
+                  ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
         ),
-      ));
+      );
     }
-    return _mainItems;
+    return _items;
   }
-}
-
-class MainItem {
-  String title;
-  IconData iconData;
-  Color color;
-
-  MainItem({required this.title, required this.iconData, required this.color});
 }
