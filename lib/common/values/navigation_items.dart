@@ -8,7 +8,7 @@ class NavigationItem {
 }
 
 var navigationItems = <NavigationItem>[
-  NavigationItem(title: "Home", iconData: "assets/home.svg"),
-  NavigationItem(title: "Drawers", iconData: "assets/storage.svg"),
-  NavigationItem(title: "Todo", iconData: "assets/todo.svg")
+  NavigationItem(title: "Home", iconData: "assets/images/bottom/home.svg"),
+  NavigationItem(title: "Drawers", iconData: "assets/images/bottom/storage.svg"),
+  NavigationItem(title: "Todo", iconData: "assets/images/bottom/todo.svg")
 ];

@@ -33,8 +33,9 @@ class MyApp extends StatelessWidget {
       title: 'Lokalny',
       home: IndexPage(),
       theme: ThemeData(
-          backgroundColor: Colors.yellow,
-          primaryColor: const Color.fromRGBO(142, 151, 253, 1.0)),
+        backgroundColor: Colors.yellow,
+        primaryColor: const Color.fromRGBO(142, 151, 253, 1.0),
+      ),
       // primaryColor: Colors.yellow),
       showSemanticsDebugger: false,
     );

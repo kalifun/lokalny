@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lokalny/common/screen/screen.dart';
+import 'package:lokalny/common/values/colors.dart';
 import 'package:lokalny/common/values/navigation_items.dart';
 
 // hover bottom bar
@@ -16,20 +17,25 @@ class _HoverBottomBarState extends State<HoverBottomBar> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      height: doSetHeight(56),
-      bottom: doSetHeight(32),
-      left: doSetWidth(32),
-      right: doSetWidth(32),
-      child: Material(
-        color: Colors.white,
-        elevation: 10.0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: _barItems(),
-        ),
-      ),
+    return Stack(
+      children: [
+        Positioned(
+          height: doSetHeight(56),
+          bottom: doSetHeight(32),
+          left: doSetWidth(32),
+          right: doSetWidth(32),
+          child: Material(
+            color: Colors.white,
+            elevation: 10.0,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: _barItems(),
+            ),
+          ),
+        )
+      ],
     );
   }
 
@@ -52,7 +58,7 @@ class _HoverBottomBarState extends State<HoverBottomBar> {
               milliseconds: 300,
             ),
             decoration: BoxDecoration(
-                color: isSelected ? Colors.teal : Colors.transparent,
+                color: isSelected ? AppColors.primaryParts : Colors.transparent,
                 borderRadius: BorderRadius.circular(18)),
             // child: SvgPicture.asset(
             //   navigationItems[i].iconData,
