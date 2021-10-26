@@ -18,13 +18,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // @override
-  // void initState() {
-  //   SystemChrome.setSystemUIOverlayStyle(
-  //       SystemUiOverlayStyle(statusBarColor: Colors.yellow));
-  // }
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
