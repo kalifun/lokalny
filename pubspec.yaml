@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_screenutil: ^5.0.0+2
   flutter_svg: ^0.23.0+1
+  google_nav_bar: ^5.0.5
 
 dev_dependencies:
   flutter_test:
@@ -100,3 +101,7 @@ flutter:
     fonts:
       - asset: assets/fonts/Montserrat-SemiBold.ttf
         weight: 600
+  - family: Bottom_bar
+    fonts:
+      - asset: assets/fonts/Bottom_bar.ttf
+        weight: 700

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:lokalny/common/icon/bottom_bar_icons.dart';
 import 'package:lokalny/common/screen/screen.dart';
-import 'package:lokalny/common/values/colors.dart';
-import 'package:lokalny/common/values/navigation_items.dart';
-import 'package:lokalny/common/widgets/animated_bottom_bar.dart';
-import 'package:lokalny/pages/drawers/drawers_page.dart';
 
 class IndexPage extends StatefulWidget {
   IndexPage({Key? key}) : super(key: key);
@@ -29,41 +26,57 @@ class _IndexPageState extends State<IndexPage> {
     );
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
-      child: Material(
-          child: Scaffold(
-        // appBar: AppBar(
-        //     backgroundColor: Colors.transparent,
-        //     elevation: 0,
-        //     title: Center(
-        //       child: Text(
-        //         "收纳",
-        //         style: TextStyle(
-        //           color: AppColors.primaryText,
-        //           fontFamily: 'Montserrat',
-        //           fontSize: doSetFontSize(18.0),
-        //           fontWeight: FontWeight.w600,
-        //         ),
-        //       ),
-        //     ),
-        //     leading: IconButton(
-        //       icon: const Icon(Icons.arrow_back),
-        //       color: AppColors.primaryText,
-        //       onPressed: () {
-        //         Navigator.pop(context);
-        //       },
-        //     ),
-        //     actions: <Widget>[
-        //       IconButton(
-        //           onPressed: () {},
-        //           icon: Icon(
-        //             Icons.add_to_photos,
-        //             color: Colors.black,
-        //           ))
-        //     ]),
-        body: Stack(
-          children: [DrawersPage(), HoverBottomBar()],
+      child: Scaffold(
+      bottomNavigationBar: Container(
+        margin: EdgeInsets.only(bottom: doSetHeight(10), left: doSetWidth(32), right: doSetWidth(32)),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(28),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 20,
+              color: Colors.black.withOpacity(.1),
+            )
+          ],
         ),
-      )),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            child: GNav(
+              rippleColor: Colors.grey[300]!,
+              hoverColor: Colors.grey[100]!,
+              gap: 8,
+              activeColor: Colors.teal,
+              iconSize: 24,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: const Duration(milliseconds: 400),
+              tabBackgroundColor: Colors.grey[100]!,
+              color: Colors.grey,
+              tabs: const [
+                GButton(
+                  icon: Bottom_bar.home_1,
+                  text: 'Home',
+                ),
+                GButton(
+                  icon: Bottom_bar.suitcase_rolling,
+                  text: 'Likes',
+                ),
+                GButton(
+                  icon: Bottom_bar.check_double,
+                  text: 'Search',
+                ),
+              ],
+              selectedIndex: selectedItemIndex,
+              onTabChange: (index) {
+                setState(() {
+                  selectedItemIndex = index;
+                });
+              },
+            ),
+          ),
+        ),
+      ),
+    ),
     );
   }
 }
