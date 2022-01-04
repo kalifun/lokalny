@@ -64,15 +64,15 @@ class _IndexPageState extends State<IndexPage> {
                 tabs: const [
                   GButton(
                     icon: Bottom_bar.home_1,
-                    text: 'Home',
+                    text: '主页',
                   ),
                   GButton(
                     icon: Bottom_bar.suitcase_rolling,
-                    text: 'Likes',
+                    text: '抽屉',
                   ),
                   GButton(
                     icon: Bottom_bar.check_double,
-                    text: 'Search',
+                    text: '待办',
                   ),
                 ],
                 selectedIndex: selectedItemIndex,
