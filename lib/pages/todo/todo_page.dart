@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lokalny/common/values/colors.dart';
 import 'package:lokalny/common/widgets/custom_scroll_view.dart';
 import 'package:lokalny/common/widgets/tags/tags.dart';
 
@@ -17,20 +18,20 @@ class _TodoPageState extends State<TodoPage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey.shade500,
+          backgroundColor: AppColors.primaryParts,
           title: Text('TodoList'),
           bottom: TabBar(
-            indicatorColor: Colors.lime,
+            indicatorColor: Colors.white,
             indicatorWeight: 5.0,
             labelColor: Colors.white,
             labelPadding: EdgeInsets.only(top: 10.0),
-            unselectedLabelColor: Colors.grey,
+            // unselectedLabelColor: Colors.grey,
             tabs: [
               Tab(
                 text: 'Task',
                 icon: Icon(
                   Icons.task_outlined,
-                  color: Colors.white,
+                  // color: Colors.white,
                 ),
                 iconMargin: EdgeInsets.only(bottom: 10.0),
               ),
@@ -40,7 +41,7 @@ class _TodoPageState extends State<TodoPage> {
                 text: 'Category',
                 icon: Icon(
                   Icons.category_outlined,
-                  color: Colors.white,
+                  // color: Colors.white,
                 ),
                 iconMargin: EdgeInsets.only(bottom: 10.0),
               ),
@@ -48,7 +49,7 @@ class _TodoPageState extends State<TodoPage> {
                 text: 'Tags',
                 icon: Icon(
                   Icons.tag_outlined,
-                  color: Colors.white,
+                  // color: Colors.white,
                 ),
                 iconMargin: EdgeInsets.only(bottom: 10.0),
               ),
@@ -64,7 +65,7 @@ class _TodoPageState extends State<TodoPage> {
             // )),
             genList(),
             TodoCategory(),
-            TagWrap(),
+            TagWrapFunc(),
             // Center(
             //     child: Text(
             //   'This is Gift Tab',

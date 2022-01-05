@@ -12,7 +12,8 @@ class _TodoCategoryState extends State<TodoCategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.all(10.0),
+        // padding: EdgeInsets.symmetric(horizontal: 10),
         width: MediaQuery.of(context).size.width,
         child: CustomScrollView(
           slivers: [
@@ -34,7 +35,6 @@ class _TodoCategoryState extends State<TodoCategory> {
               crossAxisCount: 2,
               children: [
                 Container(
-                    
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +74,7 @@ class _TodoCategoryState extends State<TodoCategory> {
                         BoxShadow(
                           color: Colors.grey,
                           blurRadius: 10.0,
-                          spreadRadius: 5.0,
+                          spreadRadius: 1.0,
                           offset: Offset(0.0, 0.0),
                         ),
                       ],

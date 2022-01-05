@@ -1,12 +1,101 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+
+class TagWrapFunc extends StatefulWidget {
+  TagWrapFunc({Key? key}) : super(key: key);
+
+  @override
+  _TagWrapFuncState createState() => _TagWrapFuncState();
+}
+
+class _TagWrapFuncState extends State<TagWrapFunc> {
+  var _tags = <String>[];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      _tags = [];
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var _tag = TextEditingController();
+
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.all(20),
+            child: TextField(
+              onSubmitted: (value) {
+                setState(() {
+                  _tags.add(value);
+                  _tag.text = "";
+                });
+                print(_tags);
+              },
+              controller: _tag,
+              decoration: InputDecoration(
+                  suffixIcon: Icon(Icons.bookmark_add_outlined),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                      borderRadius: BorderRadius.all(Radius.circular(20)))),
+              cursorRadius: Radius.circular(16),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Wrap(
+              spacing: 2,
+              runSpacing: 5,
+              children: <Widget>[for (String item in _tags) TagItem(item)])
+        ],
+      ),
+    );
+  }
+}
 
 class TagWrap extends StatelessWidget {
   const TagWrap({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var _tag = TextEditingController();
+    var _tags = <String>[];
+
     return Container(
-      child: Wrap(children: <Widget>[for (String item in tags) TagItem(item)]),
+      padding: EdgeInsets.only(top: 10),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.all(20),
+            child: TextField(
+              onSubmitted: (value) {
+                _tags.add(value);
+                _tag.text = "";
+              },
+              controller: _tag,
+              decoration: InputDecoration(
+                  suffixIcon: Icon(Icons.bookmark_add_outlined),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)))),
+              cursorRadius: Radius.circular(16),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Wrap(
+              spacing: 2,
+              runSpacing: 5,
+              children: <Widget>[for (String item in _tags) TagItem(item)])
+        ],
+      ),
     );
   }
 }
@@ -14,20 +103,23 @@ class TagWrap extends StatelessWidget {
 class TagItem extends StatelessWidget {
   final String text;
 
-  TagItem(this.text);
+  const TagItem(this.text);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.symmetric(horizontal: 7, vertical: 5),
       margin: EdgeInsets.symmetric(horizontal: 4.0),
       decoration: BoxDecoration(
-          color: Color.fromARGB(255, 171, 81, 81),
+          // color: Color.fromARGB(255, 171, 81, 81),
+          color: Color.fromRGBO(Random().nextInt(256), Random().nextInt(256),
+              Random().nextInt(256), 1),
           border:
               Border.all(color: Colors.blueAccent.withAlpha(60), width: 1.0),
-          borderRadius: BorderRadius.all(Radius.circular(8))),
+          borderRadius: BorderRadius.all(Radius.circular(50))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
             child: Text(
@@ -44,7 +136,7 @@ class TagItem extends StatelessWidget {
               child: Icon(
                 Icons.cancel,
                 size: 18.0,
-                color: Colors.green,
+                color: Colors.grey,
               ),
             ),
           )
@@ -57,18 +149,3 @@ class TagItem extends StatelessWidget {
     );
   }
 }
-
-const List<String> tags = [
-  "肯德基",
-  "小哥哥你的东西掉了",
-  "小姐姐好漂亮啊",
-  "这个东西是啥",
-  "哈哈哈",
-  "好困啊",
-  "今天好运",
-  "明天好运来",
-  "今年快结束了",
-  "我累啊",
-  "你写的什么代码",
-  "多多多"
-];

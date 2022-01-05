@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lokalny/common/icon/bottom_bar_icons.dart';
 import 'package:lokalny/common/screen/screen.dart';
+import 'package:lokalny/common/values/colors.dart';
 import 'package:lokalny/pages/drawers/drawers_page.dart';
 import 'package:lokalny/pages/home/home_page.dart';
 import 'package:lokalny/pages/todo/todo_page.dart';
@@ -30,6 +31,7 @@ class _IndexPageState extends State<IndexPage> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: _list[selectedItemIndex],
         bottomNavigationBar: Container(
           margin: EdgeInsets.only(
@@ -54,7 +56,7 @@ class _IndexPageState extends State<IndexPage> {
                 rippleColor: Colors.grey[300]!,
                 hoverColor: Colors.grey[100]!,
                 gap: 8,
-                activeColor: Colors.teal,
+                activeColor: AppColors.primaryParts,
                 iconSize: 24,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 12),

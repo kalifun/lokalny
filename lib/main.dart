@@ -8,6 +8,7 @@ void main() {
   if (Platform.isAndroid) {
     // 设置状态栏背景及颜色
     SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.transparent,
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
@@ -24,9 +25,10 @@ class MyApp extends StatelessWidget {
       title: 'Lokalny',
       home: IndexPage(),
       theme: ThemeData(
-          backgroundColor: Colors.yellow,
-          primaryColor: const Color.fromRGBO(142, 151, 253, 1.0),
-          primarySwatch: Colors.teal),
+        backgroundColor: Colors.yellow,
+        primaryColor: const Color.fromRGBO(142, 151, 253, 1.0),
+        // primarySwatch: Colors.teal
+      ),
       // primaryColor: Colors.yellow),
       showSemanticsDebugger: false,
     );
